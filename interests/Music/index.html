@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Music Interests Tool</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <h2>Inputs</h2>
+                </td>
+                <td>
+                    <h2>Previews</h2>
+                </td>
+            </tr>
+            <!-- Image -->
+            <tr>
+                <td>
+                    <label for="inputCassetteImageSrc">Cassette image src:</label>
+                    <br>
+                    <textarea id="inputCassetteImageSrc" style="height: 4lh; min-height: 3lh;" oninput="updateCassetteImagePreview(this.value)">https://cdn.spacehey.net/profilepics/2_942c747dfa91de093ccc26a18a172a1d.png?expires=1753775627&token=96bbc8e5e88ac42c92faae761088d5b54058e173c53608f57832fded1ba9cbcc</textarea>
+                    <p>
+                        Recommended size: at least 256x128
+                    </p>
+                </td>
+                <td>
+                    <img id="previewCassetteImageSrc" style="width: 256px; max-height: 256px;" src="https://cdn.spacehey.net/profilepics/2_942c747dfa91de093ccc26a18a172a1d.png?expires=1753775627&token=96bbc8e5e88ac42c92faae761088d5b54058e173c53608f57832fded1ba9cbcc">
+                </td>
+            </tr>
+            <!-- Text -->
+            <tr>
+                <td>
+                    <label for="inputCassetteText">Cassette text:</label>
+                    <textarea id="inputCassetteText" style="height: 2lh; min-height: 1lh;" oninput="updateCassetteTextPreview(this.value)">Placeholder text <br> (Line 2 optional)</textarea>
+                    <p>You may use html & css</p>
+                </td>
+                <td style="background-image:  linear-gradient(60deg, #0008 -50%, #fff8 150%);">
+                    <div id="previewCassetteText">Placeholder text <br> (Line 2 optional)</div>
+                </td>
+            </tr>
+            <!-- Bottom text -->
+            <tr>
+                <td>
+                    <label for="inputCassetteBottomText">Cassette bottom text:</label>
+                    <textarea id="inputCassetteBottomText" style="height: 2lh; min-height: 1lh;" oninput="updateCassetteBottomTextPreview(this.value)">Placeholder bottom text</textarea>
+                    <p>You may use html & css <br> Also bottom text is heavily optional</p>
+                </td>
+                <td style="background-color: #202020;">
+                    <div id="prevewCassetteBottomScrew"></div>
+                    <div class="prevewCassetteBottom"></div>
+                    <div class="prevewCassetteBottom"></div>
+                    <div id="prevewCassetteBottomText">Placeholder bottom text</div>
+                </td>
+            </tr>
+            <!-- Hover link -->
+            <tr>
+                <td>
+                    <label for="inputCassetteLink">Cassette link:</label>
+                    <textarea id="inputCassetteLink" style="height: 2lh; min-height: 1lh;" oninput="updateCassetteLinkPreview(this.value)">https://spacehey.com/home</textarea>
+                    <p>ex: link to the albumn shown on the cassette</p>
+                </td>
+                <td>
+                    <a id="previewCassetteLink" href="https://spacehey.com/home" target="_blank"></a>
+                </td>
+            </tr>
+            <!-- Add cassette -->
+            <tr>
+                <td>
+                    <button id="addNewCassette" onclick="addNewCassette()" type="submit">Add new cassette</button>
+                </td>
+                <td>
+                    <div id="prevewNewCassette" class="cassetteHolder">
+                        <div class="cassette">
+                            <div class="cassetteScrew"></div>
+                            <div class="cassetteScrew"></div>
+                            <div class="cassetteScrew"></div>
+                            <div class="cassetteScrew"></div>
+                            <div class="cassetteScrew"></div>
+                            <div class="cassetteImageHolder">
+                                <img id="prevewNewCassetteImage" class="cassetteImage" src="https://cdn.spacehey.net/profilepics/2_942c747dfa91de093ccc26a18a172a1d.png?expires=1753775627&token=96bbc8e5e88ac42c92faae761088d5b54058e173c53608f57832fded1ba9cbcc">
+                                <div id="prevewNewCassetteText" class="cassetteText">
+                                    Placeholder text <br> (Line 2 optional)
+                                </div>
+                                <div class="cassetteImageOverlay"></div>
+                            </div>
+                            <div class="cassetteInnerHolder">
+                                <div class="cassetteInnerInnerHolder">
+                                    <div class="cassetteRoll"></div>
+                                    <div class="cassetteMiddle"></div>
+                                    <div class="cassetteMiddle"></div>
+                                    <div class="cassetteRoll"></div>
+                                </div>
+                                <div class="cassetteInnerOverlay"></div>
+                            </div>
+                            <div class="cassetteBottom"></div>
+                            <div class="cassetteBottom"></div>
+                            <div id="prevewNewCassetteBottomText" class="cassetteBottomText">
+
+                                Placeholder bottom text
+
+                            </div>
+                            <a id="previewNewCassetteLink" href="
+                            
+                            https://spacehey.com/home
+                            
+                            "></a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <!-- Last options -->
+            <tr>
+                <td>
+                    <label for="inputCassetteBehindColor">Color behind cassettes:</label>
+                    <input id="inputCassetteBehindColor" type="color" value="#ffffff" onchange="updateCassetteBehindColor(this.value)">
+                    <br>
+                    <label for="cassetteDeleteHolder">Get rid of cassettes:</label>
+                    <div id="cassetteDeleteHolder">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="previewMusicInterests"></div>
+                </td>
+            </tr>
+            <!-- Copy code -->
+            <tr>
+                <td>
+                    <label for="cassetteCopypasta">Convenient copy button:</label>
+                    <button id="cassetteCopypasta" type="button" onclick="copyCode()" disabled>Copy code to clipboard</button>
+                </td>
+                <td>
+                    <p id="previewCode" style="max-width: 256px;">
+                        I haven't worked out how to properly display the raw code yet
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+
+        <style id="cassetteStyles">
+            @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+            @import url("https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap");
+            :root {
+                --cassetteBehindColor:#fff;
+            }
+            .cassetteHolder {
+                position: relative;
+                width: 192px;
+                max-width: 100%;
+                margin-bottom: 4px;
+                .cassette {
+                    position: relative;
+                    background-color: #202020;
+                    padding: 4%;
+                    padding-bottom: 15%;
+                    border-radius: 6px;
+                    *.cassetteScrew {
+                        content:url("https://rowleycompany.scene7.com/is/image/rowleycompany/rowley-no.8-hex-head-slotted-screws-1.5in-length-black-hh8150-k?$s7Product$&fmt=png-alpha");
+                        position: absolute;
+                        width: 3%;
+                        background-color: #000;
+                        border-radius: 50%;
+                        margin: 2%;
+                        box-shadow: 0px -1px 1px #fff3, 0px 1px 1px 0px #000;
+                        &:nth-child(1) {
+                            left: 0px;
+                            top: 0px;
+                            rotate: -15deg;
+                        }
+                        &:nth-child(2) {
+                            right: 0px;
+                            top: 0px;
+                            rotate: 30deg;
+                        }
+                        &:nth-child(3) {
+                            right: 0px;
+                            bottom: 0px;
+                            rotate: -15deg;
+                        }
+                        &:nth-child(4) {
+                            left: 0px;
+                            bottom: 0px;
+                            rotate: 60deg;
+                        }
+                        &:nth-child(5) {
+                            z-index: 1;
+                            left: calc(50% - 6px);
+                            bottom: 9%;
+                            rotate: -60deg;
+                        }
+                    }
+                    > .cassetteImageHolder {
+                        position: relative;
+                        background-color: #000;
+                        padding: 2px;
+                        border-radius: 6px;
+                        > .cassetteImage {
+                            object-fit: cover;
+                            aspect-ratio: 2;
+                            position: relative;
+                            width: 100%;
+                            border-radius: 6px;
+                        }
+                        > .cassetteText {
+                            font-family: "Covered By Your Grace", Arial, sans-serif;
+                            color: #000;
+                            font-size: 16px;
+                            line-height: 16px;
+                            text-align: center;
+                            position: absolute;
+                            left: 0px;
+                            right: 0px;
+                            top: 0px;
+                            bottom: 0px;
+                            max-height: 2lh;
+                            background: repeating-linear-gradient(80deg, #fff9 0%, #fffb 100%),
+                                        repeating-linear-gradient(#0000 0px, #0000 0.95lh, #0008 0.95lh, #0008 1lh);
+                            border-radius: 2px;
+                            margin: 4% 10% 0px 15%;
+                            transform: skew(-5deg, 3deg);
+                        }
+                        > .cassetteImageOverlay {
+                            position: absolute;
+                            left: 0px;
+                            right: 0px;
+                            top: 0px;
+                            bottom: 0px;
+                            background-image: radial-gradient(at 150% 25%, #fff4, #fff0 100%);
+                            border-radius: 6px;
+                        }
+                    }
+                    > .cassetteInnerHolder {
+                        position: absolute;
+                        left: 0px;
+                        right: 0px;
+                        top: 0px;
+                        bottom: 0px;
+                        background-color: #202020;
+                        border-radius: 4px;
+                        margin: 27%;
+                        > .cassetteInnerInnerHolder {
+                            display: flex;
+                            justify-content: space-between;
+                            position: absolute;
+                            left: 0px;
+                            right: 0px;
+                            top: 0px;
+                            bottom: 0px;
+                            background-color: #202020;
+                            border-radius: 4px;
+                            margin: 2%;
+                            box-shadow: inset -1px 0px 0px #fff1, inset 0px 1px 0px #0008;
+                            > .cassetteRoll {
+                                aspect-ratio: 1;
+                                position: relative;
+                                background-image: radial-gradient(var(--cassetteBehindColor) 55%, #aaa 56%, #eee 65%, #aaa 80%);
+                                border-radius: 50%;
+                                margin: 2%;
+                            }
+                            > .cassetteMiddle {
+                                flex-grow: 1;
+                                background: radial-gradient(circle at -20px, #764 22px, #fff0 22px,#fff0 51px, var(--cassetteBehindColor) 52px), 
+                                            repeating-radial-gradient(circle at -20px,#764 0px, #432 1.5px, #544 1.5px, #544 2px);
+                                margin: 3% 0px;
+                                &:nth-child(odd) {
+                                    background: radial-gradient(circle at 52px, #aaa 22px, #fff0 22px,#fff0 31px, var(--cassetteBehindColor) 32px), 
+                                                repeating-radial-gradient(circle at 52px,#764 0px, #432 1.5px, #544 1.5px, #544 2px);
+                                }
+                            }
+                        }
+                        > .cassetteInnerOverlay {
+                            position: absolute;
+                            left: 0px;
+                            right: 0px;
+                            top: 0px;
+                            bottom: 0px;
+                            background-image: radial-gradient(at 150% 0%, #fff2, #fff0 75%);
+                            border-radius: 4px;
+                        }
+                    }
+                    > .cassetteBottom {
+                        position: absolute;
+                        left: 0px;
+                        bottom: -1%;
+                        width: 40%;
+                        height: 20%;
+                        background-color: #242424;
+                        border: solid;
+                        border-color: #000 #000 #202020;
+                        border-width: 3px 0px 2px 2.5px;
+                        border-radius: 3px;
+                        margin: 0px 15%;
+                        transform: skew(-10deg);
+                        &:nth-child(even) {
+                            left: unset;
+                            right: 0px;
+                            border-width: 3px 2.5px 2px 0px;
+                            transform: skew(10deg);
+                        }
+                    }
+                    > .cassetteBottomText {
+                        font-family: "Open Sans", Arial, sans-serif;
+                        color: #fff4;
+                        font-size: 10px;
+                        text-align: center;
+                        position: absolute;
+                        left: 0px;
+                        right: 0px;
+                        bottom: 1%;
+                    }
+                    a {
+                        position: absolute;
+                        left: 0px;
+                        right: 0px;
+                        top: 0px;
+                        bottom: 0px;
+                    }
+                }
+            }
+        </style>
+        <style>
+            td {
+                position: relative;
+                border: solid;
+            }
+            textarea {
+                width: calc(100% - 6px);
+                resize: vertical;
+            }
+            #previewCassetteText {
+                font-family: "Covered By Your Grace", Arial, sans-serif;
+                color: #000;
+                font-size: 24px;
+                line-height: 20px;
+                text-align: center;
+                position: relative;
+                max-height: 40px;
+                background: repeating-linear-gradient(80deg, #fff9 0%, #fffb 100%),
+                            repeating-linear-gradient(#0000 0px, #0000 19px, #0008 19px, #0008 20px);
+                border-radius: 2px;
+                margin: 8px 16px 8px 24px;
+                transform: skew(-5deg, 3deg);
+            }
+            .prevewCassetteBottom {
+                position: absolute;
+                left: 0px;
+                bottom: -1px;
+                width: 40%;
+                height: 32px;
+                background-color: #242424;
+                border: solid;
+                border-color: #000 #000 #202020;
+                border-width: 3px 0px 2px 2.5px;
+                border-radius: 3px;
+                margin: 0px 16%;
+                transform: skew(-10deg);
+                &:nth-child(even) {
+                    left: unset;
+                    right: 0px;
+                    border-width: 3px 2.5px 2px 0px;
+                    transform: skew(10deg);
+                }
+            }
+            #prevewCassetteBottomText {
+                font-family: "Open Sans", Arial, sans-serif;
+                color: #fff4;
+                font-size: 12px;
+                text-align: center;
+                position: absolute;
+                left: 0px;
+                right: 0px;
+                bottom: 3px;
+                transform: rotateX(15deg);
+            }
+            #prevewCassetteBottomScrew {
+                content:url("https://rowleycompany.scene7.com/is/image/rowleycompany/rowley-no.8-hex-head-slotted-screws-1.5in-length-black-hh8150-k?$s7Product$&fmt=png-alpha");
+                position: absolute;
+                width: 10px;
+                background-color: #000;
+                border-radius: 50%;
+                margin: 3px;
+                box-shadow: 0px -1px 1px #fff3, 0px 1px 1px 0px #000;
+                
+                z-index: 1;
+                left: calc(50% - 6px);
+                bottom: 17px;
+                rotate: -60deg;
+            }
+            #previewCassetteLink {
+                position: absolute;
+                left: 0px;
+                right: 0px;
+                top: 0px;
+                bottom: 0px;
+                background-color: #0000EE;
+                margin: 4px;
+                &:visited {
+                    background-color: #551A8B;
+                }
+                &:active {
+                    background-color: #FF0000;
+                }
+            }
+
+            #previewMusicInterests {
+                position: relative;
+                width: fit-content;
+                background-color: #dbeafe;
+                padding: 3px;
+                margin: 2px;
+            }
+        </style>
+        <script>
+            class cassetteTape {
+                constructor (cassetteImage, cassetteText, cassetteBottomText, cassetteLink) {
+                    this.string = '<div class="cassetteHolder"><div class="cassette"><div class="cassetteScrew"></div><div class="cassetteScrew"></div><div class="cassetteScrew"></div><div class="cassetteScrew"></div><div class="cassetteScrew"></div><div class="cassetteImageHolder"><img class="cassetteImage" src="'
+                            + cassetteImage +
+                            '"><div class="cassetteText">'
+                            + cassetteText +
+                            '</div><div class="cassetteImageOverlay"></div></div><div class="cassetteInnerHolder"><div class="cassetteInnerInnerHolder"><div class="cassetteRoll"></div><div class="cassetteMiddle"></div><div class="cassetteMiddle"></div><div class="cassetteRoll"></div></div><div class="cassetteInnerOverlay"></div></div><div class="cassetteBottom"></div><div class="cassetteBottom"></div><div class="cassetteBottomText">'
+                            + cassetteBottomText +
+                            '</div><a href="'
+                            + cassetteLink +
+                            '"></a></div></div>'
+                            ;
+                    let tempCassetteHolder = document.createElement('div');
+                    tempCassetteHolder.innerHTML = this.string;
+                    this.element = tempCassetteHolder;
+                }
+            }
+        </script>
+        <script>
+            // variables
+            var newCassetteImageSrc = 'https://cdn.spacehey.net/profilepics/2_942c747dfa91de093ccc26a18a172a1d.png?expires=1753775627&token=96bbc8e5e88ac42c92faae761088d5b54058e173c53608f57832fded1ba9cbcc';
+            var newCassetteText = 'Placeholder text <br> (Line 2 optional)';
+            var newCassetteBottomText = 'Placeholder bottom text';
+            var newCassetteLink = 'https://spacehey.com/home';
+
+            var cassetteBehindColor = '#ffffff';
+
+            var cassettes = [];
+
+            var codeCopyPasta = '';
+
+            // functions
+            function updateCassetteImagePreview (tempCassetteImageSrc) {
+                document.getElementById('previewCassetteImageSrc').src = tempCassetteImageSrc;
+                document.getElementById('prevewNewCassetteImage').src = tempCassetteImageSrc;
+                newCassetteImageSrc = tempCassetteImageSrc;
+            }
+            function updateCassetteTextPreview (tempCassetteText) {
+                document.getElementById('previewCassetteText').innerHTML = tempCassetteText;
+                document.getElementById('prevewNewCassetteText').innerHTML = tempCassetteText;
+                newCassetteText = tempCassetteText;
+            }
+            function updateCassetteBottomTextPreview (tempCassetteBottomText) {
+                document.getElementById('prevewCassetteBottomText').innerHTML = tempCassetteBottomText;
+                document.getElementById('prevewNewCassetteBottomText').innerHTML = tempCassetteBottomText;
+                newCassetteBottomText = tempCassetteBottomText;
+            }
+            function updateCassetteLinkPreview (tempCassetteLink) {
+                document.getElementById('previewCassetteLink').href = tempCassetteLink;
+                document.getElementById('previewNewCassetteLink').href = tempCassetteLink;
+                newCassetteLink = tempCassetteLink;
+            }
+            function updateCassetteBehindColor (tempCassetteBehindColor) {
+                document.querySelector(':root').style.setProperty('--cassetteBehindColor', tempCassetteBehindColor)
+                cassetteBehindColor = tempCassetteBehindColor;
+            }
+            
+            function copyCode () {
+                navigator.clipboard.writeText(codeCopyPasta);
+            };
+
+            function addNewCassette () {
+                console.log('cassettes before');
+                console.log(cassettes);
+
+                cassettes.push(new cassetteTape (newCassetteImageSrc, newCassetteText, newCassetteBottomText, newCassetteLink).string);
+
+                console.log('cassettes after:');
+                console.log(cassettes);
+
+                updateMusicInterestsPreview();
+            }
+
+            function updateMusicInterestsPreview () {
+                document.getElementById('previewMusicInterests').replaceChildren('');
+                cassettes.forEach(cassette => {
+                    document.getElementById('previewMusicInterests').innerHTML += cassette;
+                });
+                document.getElementById('cassetteDeleteHolder').replaceChildren('');
+                for (i = 0; i < cassettes.length; i++) {
+                    let newDeleteButton = document.createElement('button');
+                    newDeleteButton.innerText = 'delete cassette #' + (i + 1);
+                    newDeleteButton.addEventListener('click', function (i) {
+                        cassettes.splice(i, 1);
+                        updateMusicInterestsPreview();
+                    }, i);
+                    document.getElementById('cassetteDeleteHolder').appendChild(newDeleteButton);
+                    document.getElementById('cassetteDeleteHolder').appendChild(document.createElement('br'));
+                }
+                
+                codeCopyPasta = (document.getElementById('previewMusicInterests').innerHTML + '<style>' + document.getElementById('cassetteStyles').innerText.replaceAll('  ', '').replaceAll(/(\r\n|\n|\r)/gm, "") + '</style>');
+                document.getElementById('cassetteCopypasta').disabled = false;
+            }
+        </script>
+    </body>
+</html>
