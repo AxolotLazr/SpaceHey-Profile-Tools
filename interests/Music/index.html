@@ -130,6 +130,11 @@
                 <td>
                     <label for="cassetteCopypasta">Convenient copy button:</label>
                     <button id="cassetteCopypasta" type="button" onclick="copyCode()" disabled>Copy code to clipboard</button>
+                    <p>
+                        Q: can I remove the link to Music <br> 
+                        Interests Tool from my profile? <br>
+                        A: yes! it's the first &lt;p&gt; tag in the copied code
+                    </p>
                 </td>
                 <td>
                     <p id="previewCode" style="max-width: 256px;">
@@ -138,6 +143,13 @@
                 </td>
             </tr>
         </table>
+
+        <h1>Here's how I used it</h1>
+        <h2>here's what my lil fingies typed in on here</h2>
+        <img class="howIDunnit" src="Screenshot GODHANDUSA.png">
+        <img class="howIDunnit" src="Screenshot shteppi.png">
+        <h2>& here's how it looks on my profile</h2>
+        <img class="howIDunnit" src="Screenshot SpaceHey.png">
 
 
         <style id="cassetteStyles">
@@ -413,6 +425,16 @@
                 margin: 2px;
             }
         </style>
+        <style>
+            .howIDunnit {
+                &, img {
+                    width: 512px;
+                    min-height: 512px;
+                    height: auto;
+                    transition: 0.2s ease-in-out;
+                }
+            }
+        </style>
         <script>
             class cassetteTape {
                 constructor (cassetteImage, cassetteText, cassetteBottomText, cassetteLink) {
@@ -443,6 +465,8 @@
 
             var cassettes = [];
 
+            var codeCopyPastaWatermark = '<p id="watermarkMusicInterestsTool">Made with <a href="https://axolotlazr.github.io/SpaceHey-Profile-Tools/interests/Music/">Music Interests Tool</a></p>';
+
             var codeCopyPasta = '';
 
             // functions
@@ -472,7 +496,7 @@
             }
             
             function copyCode () {
-                navigator.clipboard.writeText(codeCopyPasta);
+                navigator.clipboard.writeText(codeCopyPastaWatermark + codeCopyPasta);
             };
 
             function addNewCassette () {
